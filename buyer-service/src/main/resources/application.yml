@@ -1,0 +1,38 @@
+# application instance port define
+server:
+  port: 8085
+
+# actuator Port
+management:
+  server:
+    port: 9085
+
+spring:
+  # Application name
+  application:
+    name: buyer-service
+  # Color-coded logging output
+  output:
+    ansi:
+      enabled: DETECT
+  # Database configurations
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/buyerDB
+
+# Logging Configurations
+logging:
+  # Level
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    com.auction.app: DEBUG
+    org.hibernate: ERROR
+  # Pattern
+  pattern:
+    console: d{yyyy-MM-dd HH:mm:ss} - %msg%n
+    file: d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+  # File path configurations
+  file:
+    name: /logs/application-debug.log
+
