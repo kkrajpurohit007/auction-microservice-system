@@ -1,19 +1,16 @@
-package com.eauction.app.model;
+package com.eauction.app.wrapper;
 
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-
-@Data
-@Document(collection="product")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
 public class Product {
-    @Id
     private long id;
-    @Indexed(unique = true)
     private String name;
     private String description;
     private String shortDescription;

@@ -2,6 +2,9 @@ package com.eauction.app.controller;
 
 import com.eauction.app.model.Seller;
 import com.eauction.app.service.SellerService;
+import com.eauction.app.wrapper.Product;
+import com.eauction.app.wrapper.RequestWrapper;
+import com.eauction.app.wrapper.ResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,31 @@ import java.util.List;
 public class SellerController {
     @Autowired
     private SellerService sellerService;
+
+    @PostMapping("/seller/add-product")
+    public ResponseEntity <ResponseWrapper> createSellerProduct(@RequestBody RequestWrapper requestData) {
+        Product product = requestData.getProduct();
+        Seller seller = requestData.getSeller();
+        // TODO : REST-Template Save Product by calling product service
+        // TODO: Save Seller information if product save successful
+        ResponseWrapper responseWrapper = new ResponseWrapper();
+        return ResponseEntity.ok(responseWrapper);
+    }
+
+    @DeleteMapping("/seller/delete/{id}")
+    public HttpStatus deleteSellerProduct(@PathVariable long id) {
+        // TODO: Auth Product & seller authentication
+        // TODO : call product delete service
+        return HttpStatus.OK;
+    }
+
+    @GetMapping("seller/show-bids/{id}")
+    public ResponseEntity<ResponseWrapper> showProductBidList(@PathVariable long id){
+        ResponseWrapper responseWrapper = new ResponseWrapper();
+        // TODO : Verify product Exist or not
+        // TODO : Fetch Product Bid list
+        return ResponseEntity.ok(responseWrapper);
+    }
 
     @GetMapping("/sellers")
     public ResponseEntity <List<Seller>> getAllSeller() {
