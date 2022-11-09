@@ -1,6 +1,6 @@
 # application instance port define
 server:
-  port: 8081
+  port: 8082
 
 # actuator Port
 management:

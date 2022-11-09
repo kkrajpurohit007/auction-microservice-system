@@ -27,8 +27,14 @@ public class SellerService implements ISellerService {
         if (sellerDb.isPresent()) {
             Seller sellerUpdate = sellerDb.get();
             sellerUpdate.setId(seller.getId());
-            sellerUpdate.setName(seller.getName());
-            sellerUpdate.setDescription(seller.getDescription());
+            sellerUpdate.setFirstName(seller.getFirstName());
+            sellerUpdate.setLastName(seller.getLastName());
+            sellerUpdate.setEmail(seller.getEmail());
+            sellerUpdate.setAddress(seller.getAddress());
+            sellerUpdate.setCity(seller.getCity());
+            sellerUpdate.setState(seller.getState());
+            sellerUpdate.setPin(seller.getPin());
+            sellerUpdate.setPhone(seller.getPhone());
             sellerRepository.save(sellerUpdate);
             return sellerUpdate;
         } else {
