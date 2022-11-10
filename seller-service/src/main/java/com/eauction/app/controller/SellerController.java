@@ -2,7 +2,9 @@ package com.eauction.app.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
+import com.sun.jndi.toolkit.url.Uri;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -38,34 +40,50 @@ public class SellerController {
     
     @PostMapping("/seller/add-product")
     public ResponseEntity <ResponseWrapper> createSellerProduct(@RequestBody RequestWrapper requestData) {
-        Product product = requestData.getProduct();
-        Seller seller = requestData.getSeller();
-        // TODO : REST-Template Save Product by calling product service
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity<Product> entity = new HttpEntity<Product>(product,headers);
-        Product productEntity =  restTemplate.exchange(
-              "http://localhost:8082/e-auction/api/v1/products", HttpMethod.POST, entity, Product.class).getBody();
-        // TODO: Save Seller information if product save successful
-        
         ResponseWrapper responseWrapper = new ResponseWrapper();
-        responseWrapper.setProduct(productEntity);
-        responseWrapper.setSeller(sellerService.createSeller(seller));
+        Product reqProduct = requestData.getProduct();
+        Seller reqSeller = requestData.getSeller();
+        if(Objects.nonNull(reqProduct) && Objects.nonNull(reqProduct)){
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+            HttpEntity<Product> entity = new HttpEntity<Product>(reqProduct,headers);
+            String url = "http://localhost:8082/e-auction/api/v1/products";
+            ResponseEntity<Product> responseEntity =  restTemplate.postForEntity(url, entity, Product.class);
+            if(responseEntity.getStatusCode().is2xxSuccessful()){
+                responseWrapper.setProduct(responseEntity.getBody());
+                responseWrapper.setSeller(sellerService.createSeller(reqSeller));
+            }
+        }
         return ResponseEntity.ok(responseWrapper);
+
+//        // TODO : REST-Template Save Product by calling product service
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+//        HttpEntity<Product> entity = new HttpEntity<Product>(product,headers);
+//        Product productEntity =  restTemplate.exchange(
+//              "http://localhost:8082/e-auction/api/v1/products", HttpMethod.POST, entity, Product.class).getBody();
+//        // TODO: Save Seller information if product save successfull
+//        ResponseWrapper responseWrapper = new ResponseWrapper();
+//        responseWrapper.setProduct(productEntity);
+//        responseWrapper.setSeller(sellerService.createSeller(seller));
+//        return ResponseEntity.ok(responseWrapper);
     }
 
     @DeleteMapping("/seller/delete/{id}")
     public HttpStatus deleteSellerProduct(@PathVariable long id) {
         // TODO: Auth Product & seller authentication
         // TODO : call product delete service
+        String url = "http://localhost:8082/e-auction/api/v1/products/{id}";
+        restTemplate.delete(url,id);
         return HttpStatus.OK;
     }
 
     @GetMapping("seller/show-bids/{id}")
     public ResponseEntity<ResponseWrapper> showProductBidList(@PathVariable long id){
         ResponseWrapper responseWrapper = new ResponseWrapper();
-        // TODO : Verify product Exist or not
         // TODO : Fetch Product Bid list
+
         return ResponseEntity.ok(responseWrapper);
     }
 

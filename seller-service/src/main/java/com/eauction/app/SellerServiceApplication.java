@@ -16,10 +16,5 @@ public class SellerServiceApplication {
         SpringApplication.run(SellerServiceApplication.class, args);
         System.out.println("Seller Service are app");
     }
-    
-    @Bean
-    public RestTemplate getRestTemplate() {
-       return new RestTemplate();
-    }
 
 }
