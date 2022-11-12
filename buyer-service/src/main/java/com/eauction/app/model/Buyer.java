@@ -11,8 +11,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Buyer {
     @Id
     private long id;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private String state;
+    private String pin;
     @Indexed(unique = true)
-    private String name;
-    private String description;
-    private String shortDescription;
+    private String phone;
+    @Indexed(unique = true)
+    private String email;
+
+//    private Integer productId;
+//    private Float bidAmount;
 }

@@ -24,6 +24,7 @@ public class BuyerController {
 
     @PostMapping("/buyer/place-bid")
     public ResponseEntity <ResponseWrapper> placeProductBid(@RequestBody RequestWrapper requestData) {
+        // TODO: Product Exist or Bid Date Start Not expire
         // TODO : CAll product bid insert service
         ResponseWrapper responseWrapper = new ResponseWrapper();
         return ResponseEntity.ok(responseWrapper);
@@ -31,6 +32,7 @@ public class BuyerController {
 
     @GetMapping ("/buyer/update-bid/{productId}/{buyerEmail}/{newBidAmount}")
     public ResponseEntity <ResponseWrapper> updateProductBid(@RequestBody RequestWrapper requestData) {
+        // TODO: Product Exist or Bid Date not Expire
         // TODO : CAll product bid update service
         ResponseWrapper responseWrapper = new ResponseWrapper();
         return ResponseEntity.ok(responseWrapper);

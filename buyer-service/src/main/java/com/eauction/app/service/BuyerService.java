@@ -27,8 +27,13 @@ public class BuyerService implements IBuyerService {
         if (buyerDb.isPresent()) {
             Buyer buyerUpdate = buyerDb.get();
             buyerUpdate.setId(buyer.getId());
-            buyerUpdate.setName(buyer.getName());
-            buyerUpdate.setDescription(buyer.getDescription());
+            buyerUpdate.setFirstName(buyer.getFirstName());
+            buyerUpdate.setLastName(buyer.getLastName());
+            buyerUpdate.setAddress(buyerUpdate.getAddress());
+            buyerUpdate.setCity(buyer.getCity());
+            buyerUpdate.setEmail(buyerUpdate.getEmail());
+            buyerUpdate.setPin(buyer.getPin());
+            buyerUpdate.setPhone(buyer.getPhone());
             buyerRepository.save(buyerUpdate);
             return buyerUpdate;
         } else {
