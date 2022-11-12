@@ -61,11 +61,13 @@ public class SellerController {
 
     @DeleteMapping("/seller/delete/{id}")
     public HttpStatus deleteSellerProduct(@PathVariable long id) {
-        // TODO: Auth Product & seller authentication
-        // TODO : call product delete service
+    	HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Product> entity = new HttpEntity<Product>(headers);
         String url = "http://localhost:8082/e-auction/api/v1/products/{id}";
-        restTemplate.delete(url,id);
-        return HttpStatus.OK;
+        restTemplate.delete(
+        		url, id, entity, Product.class);
+		return HttpStatus.OK;
     }
 
     @GetMapping("seller/show-bids/{id}")

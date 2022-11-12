@@ -1,9 +1,8 @@
 package com.eauction.app.service;
 
-import com.eauction.app.model.Product;
-import com.eauction.app.model.ProductBid;
-
 import java.util.List;
+
+import com.eauction.app.model.ProductBid;
 
 public interface IBidService {
     ProductBid createBid(ProductBid productBid);

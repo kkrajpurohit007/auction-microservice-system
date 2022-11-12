@@ -2,6 +2,7 @@ package com.eauction.app.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,8 +25,9 @@ public class Product {
     private long id;
     @Indexed(unique = true)
     
-    @NotNull(message = "Name may not be null")
-    @Size(min=5, max=30)
+    @NotEmpty(message = "The name is required.")
+	@Size(min = 5, max = 30, message = "The length of name must be between 5 and 30 characters.")
+	private String firstName;
     private String name;
     private String description;
     private String shortDescription;

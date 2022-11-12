@@ -4,6 +4,8 @@ import com.eauction.app.exception.ResourceNotFoundException;
 import com.eauction.app.model.ProductBid;
 import com.eauction.app.repository.ProductBidRepository;
 import com.eauction.app.repository.ProductRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,14 +14,17 @@ import java.util.Optional;
 @Service
 public class BidService implements IBidService {
 
+	@Autowired
     private ProductRepository productRepository;
-
+    
+	@Autowired
     private ProductBidRepository productBidRepository;
 
     @Override
     public ProductBid createBid(ProductBid productBid) {
         Boolean isExist = this.productBidRepository.existsById(productBid.getId());
         if (isExist) {
+        	productBid.getId();
             return productBidRepository.save(productBid);
         } else {
             throw new ResourceNotFoundException("Record not found with id : " + productBid.getProductId());
