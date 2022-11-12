@@ -41,8 +41,10 @@ public class SellerController {
     @PostMapping("/seller/add-product")
     public ResponseEntity <ResponseWrapper> createSellerProduct(@RequestBody RequestWrapper requestData) {
         ResponseWrapper responseWrapper = new ResponseWrapper();
-        Product reqProduct = requestData.getProduct();
+        
         Seller reqSeller = requestData.getSeller();
+        Product reqProduct = requestData.getProduct();
+        sellerService.createSeller(reqSeller);
         if(Objects.nonNull(reqProduct) && Objects.nonNull(reqProduct)){
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -52,7 +54,7 @@ public class SellerController {
             ResponseEntity<Product> responseEntity =  restTemplate.postForEntity(url, entity, Product.class);
             if(responseEntity.getStatusCode().is2xxSuccessful()){
                 responseWrapper.setProduct(responseEntity.getBody());
-                responseWrapper.setSeller(sellerService.createSeller(reqSeller));
+//                responseWrapper.setSeller();
             }
         }
         return ResponseEntity.ok(responseWrapper);

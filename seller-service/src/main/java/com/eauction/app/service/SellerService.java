@@ -1,22 +1,28 @@
 package com.eauction.app.service;
 
-import com.eauction.app.exception.ResourceNotFoundException;
-import com.eauction.app.model.Seller;
-import com.eauction.app.repository.SellerRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.eauction.app.exception.ResourceNotFoundException;
+import com.eauction.app.model.Seller;
+import com.eauction.app.repository.SellerRepository;
+import com.eauction.app.sequence.SequenceGeneratorService;
 
 
 @Service
 public class SellerService implements ISellerService {
     @Autowired
     private SellerRepository sellerRepository;
+    
+    @Autowired
+    private SequenceGeneratorService sequenceGenerator;
 
     @Override
     public Seller createSeller(Seller seller) {
+    	seller.setId(sequenceGenerator.generateSequence(Seller.SEQUENCE_NAME));
         return sellerRepository.save(seller);
     }
 

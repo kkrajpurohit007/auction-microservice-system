@@ -14,10 +14,14 @@ import java.util.Optional;
 public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private SequenceGeneratorService sequenceGenerator;
 
 
     @Override
     public Product createProduct(Product product) {
+    	product.setId(sequenceGenerator.generateSequence(Product.SEQUENCE_NAME));
         return productRepository.save(product);
     }
 
@@ -27,7 +31,7 @@ public class ProductService implements IProductService {
 
         if (productDb.isPresent()) {
             Product productUpdate = productDb.get();
-            productUpdate.setId(product.getId());
+            productUpdate.setId(sequenceGenerator.generateSequence(Product.SEQUENCE_NAME));
             productUpdate.setName(product.getName());
             productUpdate.setDescription(product.getDescription());
             productRepository.save(productUpdate);

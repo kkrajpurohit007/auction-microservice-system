@@ -1,20 +1,26 @@
 package com.eauction.app.model;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
+import lombok.Data;
+
 
 @Data
 @Document(collection="ProductDB")
 public class Product {
-    @Id
+	
+	@Transient
+    public static final String SEQUENCE_NAME = "product_sequence";
+	
+	@MongoId
     private long id;
     @Indexed(unique = true)
     

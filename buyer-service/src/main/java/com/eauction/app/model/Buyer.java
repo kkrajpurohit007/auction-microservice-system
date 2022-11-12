@@ -1,15 +1,16 @@
 package com.eauction.app.model;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
+import lombok.Data;
 
 
 @Data
 @Document(collection="buyer")
 public class Buyer {
-    @Id
+	@MongoId
     private long id;
     private String firstName;
     private String lastName;
