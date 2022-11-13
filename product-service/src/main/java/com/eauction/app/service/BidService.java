@@ -22,12 +22,15 @@ public class BidService implements IBidService {
 
     @Override
     public ProductBid createBid(ProductBid productBid) {
-        Boolean isExist = this.productBidRepository.existsById(productBid.getId());
-        if (isExist) {
+        Optional<List<ProductBid>> productBidData = this.productBidRepository.findProductBidsByProductIdAndBuyerId(
+                productBid.getProductId(),
+                productBid.getBuyerId()
+        );
+        if (productBidData.get().isEmpty()) {
         	productBid.getId();
             return productBidRepository.save(productBid);
         } else {
-            throw new ResourceNotFoundException("Record not found with id : " + productBid.getProductId());
+            throw new ResourceNotFoundException("Record already found : " + productBid.getProductId());
         }
     }
 

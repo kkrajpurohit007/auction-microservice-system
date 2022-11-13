@@ -23,13 +23,13 @@ public class ProductBidController {
         return ResponseEntity.ok().body(bidService.getBidByProductId(productId));
     }
 
-    @GetMapping("/products/{id}/bids")
+    @GetMapping("/bids/{id}")
     public ResponseEntity <ProductBid> getBid(@PathVariable long id) {
         return ResponseEntity.ok().body(bidService.getBidById(id));
     }
 
     @PostMapping("/bid")
-    public ResponseEntity < ProductBid > createProduct(@RequestBody ProductBid productBid) {
+    public ResponseEntity < ProductBid > createProductBid(@RequestBody ProductBid productBid) {
         return ResponseEntity.ok().body(this.bidService.createBid(productBid));
     }
 
