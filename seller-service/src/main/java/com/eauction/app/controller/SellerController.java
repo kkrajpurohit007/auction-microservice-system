@@ -41,35 +41,22 @@ public class SellerController {
     @PostMapping("/seller/add-product")
     public ResponseEntity <ResponseWrapper> createSellerProduct(@RequestBody RequestWrapper requestData) {
         ResponseWrapper responseWrapper = new ResponseWrapper();
-        
-        Seller reqSeller = requestData.getSeller();
-        Product reqProduct = requestData.getProduct();
-        sellerService.createSeller(reqSeller);
-        if(Objects.nonNull(reqProduct) && Objects.nonNull(reqProduct)){
+        Seller seller = sellerService.createSeller(requestData.getSeller());
+        if(Objects.nonNull(requestData.getProduct()) && Objects.nonNull(seller)) {
+            Product product = requestData.getProduct();
+            product.setSellerId(seller.getId());
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-            HttpEntity<Product> entity = new HttpEntity<Product>(reqProduct,headers);
+            HttpEntity<Product> entity = new HttpEntity<Product>(product,headers);
             String url = "http://localhost:8082/e-auction/api/v1/products";
             ResponseEntity<Product> responseEntity =  restTemplate.postForEntity(url, entity, Product.class);
             if(responseEntity.getStatusCode().is2xxSuccessful()){
                 responseWrapper.setProduct(responseEntity.getBody());
-//                responseWrapper.setSeller();
+                responseWrapper.setSeller(seller);
             }
         }
         return ResponseEntity.ok(responseWrapper);
-
-//        // TODO : REST-Template Save Product by calling product service
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//        HttpEntity<Product> entity = new HttpEntity<Product>(product,headers);
-//        Product productEntity =  restTemplate.exchange(
-//              "http://localhost:8082/e-auction/api/v1/products", HttpMethod.POST, entity, Product.class).getBody();
-//        // TODO: Save Seller information if product save successfull
-//        ResponseWrapper responseWrapper = new ResponseWrapper();
-//        responseWrapper.setProduct(productEntity);
-//        responseWrapper.setSeller(sellerService.createSeller(seller));
-//        return ResponseEntity.ok(responseWrapper);
     }
 
     @DeleteMapping("/seller/delete/{id}")

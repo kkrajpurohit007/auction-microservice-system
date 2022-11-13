@@ -17,4 +17,5 @@ public class Product {
     private String category;
     private Double startingPrice;
     private Date bidEndDate;
+    private Long sellerId;
 }
