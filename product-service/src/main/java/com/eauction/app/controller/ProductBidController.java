@@ -18,7 +18,7 @@ public class ProductBidController {
     @Autowired
     private BidService bidService;
 
-    @GetMapping("/bids/{id}")
+    @GetMapping("/bids/product/{productId}")
     public ResponseEntity<List<ProductBid>> getBidByProductId(@PathVariable long productId) {
         return ResponseEntity.ok().body(bidService.getBidByProductId(productId));
     }

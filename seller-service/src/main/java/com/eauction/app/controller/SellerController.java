@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import com.eauction.app.wrapper.ProductBid;
 import com.sun.jndi.toolkit.url.Uri;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -70,11 +71,16 @@ public class SellerController {
 		return HttpStatus.OK;
     }
 
-    @GetMapping("seller/show-bids/{id}")
-    public ResponseEntity<ResponseWrapper> showProductBidList(@PathVariable long id){
+    @GetMapping("seller/show-bids/{productId}")
+    public ResponseEntity<ResponseWrapper> showProductBidList(@PathVariable long productId){
         ResponseWrapper responseWrapper = new ResponseWrapper();
-        // TODO : Fetch Product Bid list
-
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<ProductBid> entity = new HttpEntity<ProductBid>(headers);
+        String url = "http://localhost:8082/e-auction/api/v1//bids/product/1";
+//        ResponseEntity<List<ProductBid>> responseEntity = restTemplate.getForEntity(url,entity, ResponseEntity<List<ProductBid>>.class );
+//        responseWrapper.setProdcutBids((List<ProductBid>) responseEntity.getBody());
         return ResponseEntity.ok(responseWrapper);
     }
 
