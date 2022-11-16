@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "dc31133c-8b2e-4abc-b3da-e9ce1ac983ad",
+		"name": "E-Auction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15611765"
+	},
+	"item": [
+		{
+			"name": "e-auction/api/v1/products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"seller\":{\r\n       \"firstName\":\"Sardar\",\r\n       \"lastName\":\"Jee\",\r\n       \"address\":\"test address\",\r\n       \"city\":\"Indore\",\r\n       \"state\":\"MP\",\r\n       \"pin\":\"348933\",\r\n       \"phone\":\"7878787878\",\r\n       \"email\": \"s@g.com\"\r\n\r\n   },\r\n   \"product\":{\r\n    \"name\":\"Kamal\",\r\n    \"shortDescription\":\"test k\",\r\n    \"description\":\"sdfasdfasdf k\",\r\n    \"category\":\"test k\",\r\n    \"startingPrice\":209.23,\r\n    \"bidEndDate\":\"2022-11-06T10:22:34.827+00:00\"\r\n   }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8082/e-auction/api/v1/products",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"e-auction",
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "e-auction/api/v1/seller/add-product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"seller\":{\r\n       \"firstName\":\"Sardar\",\r\n       \"lastName\":\"Jee\",\r\n       \"address\":\"test address\",\r\n       \"city\":\"Indore\",\r\n       \"state\":\"MP\",\r\n       \"pin\":\"348933\",\r\n       \"phone\":\"7878787878\",\r\n       \"email\": \"s@g.com\"\r\n\r\n   },\r\n   \"product\":{\r\n    \"name\":\"Kamal\",\r\n    \"shortDescription\":\"test k\",\r\n    \"description\":\"sdfasdfasdf k\",\r\n    \"category\":\"test k\",\r\n    \"startingPrice\":209.23,\r\n    \"bidEndDate\":\"2022-11-06T10:22:34.827+00:00\"\r\n   }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/e-auction/api/v1/seller/add-product",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"e-auction",
+						"api",
+						"v1",
+						"seller",
+						"add-product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "e-auction/api/v1/seller/add-product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"seller\":{\r\n       \"firstName\":\"S\",\r\n       \"lastName\":\"R\",\r\n       \"address\":\"test address\",\r\n       \"city\":\"Indore\",\r\n       \"state\":\"MP\",\r\n       \"pin\":\"348933\",\r\n       \"phone\":\"7878787878\",\r\n       \"email\": \"sgcom\"\r\n\r\n   },\r\n   \"product\":{\r\n    \"name\":\"s\",\r\n    \"shortDescription\":\"test k\",\r\n    \"description\":\"sdfasdfasdf k\",\r\n    \"category\":\"test k\",\r\n    \"startingPrice\":209.23,\r\n    \"bidEndDate\":\"2022-11-06T10:22:34.827+00:00\"\r\n   }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/e-auction/api/v1/seller/delete/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"e-auction",
+						"api",
+						"v1",
+						"seller",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -77,7 +77,7 @@ public class SellerController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity<ProductBid> entity = new HttpEntity<ProductBid>(headers);
+        //HttpEntity<ProductBid> entity = new HttpEntity<ProductBid>(headers);
         String url = "http://localhost:8082/e-auction/api/v1//bids/product/1";
 //        ResponseEntity<List<ProductBid>> responseEntity = restTemplate.getForEntity(url,entity, ResponseEntity<List<ProductBid>>.class );
 //        responseWrapper.setProdcutBids((List<ProductBid>) responseEntity.getBody());
