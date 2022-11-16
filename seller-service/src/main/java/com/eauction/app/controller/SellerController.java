@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 import com.eauction.app.wrapper.ProductBid;
-import com.sun.jndi.toolkit.url.Uri;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

@@ -2,6 +2,7 @@ package com.eauction.app.controller;
 
 import com.eauction.app.model.Buyer;
 import com.eauction.app.service.BuyerService;
+import com.eauction.app.wrapper.ProductBid;
 import com.eauction.app.wrapper.RequestWrapper;
 import com.eauction.app.wrapper.ResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,9 @@ public class BuyerController {
     @PostMapping("/buyer/place-bid")
     public ResponseEntity <ResponseWrapper> placeProductBid(@RequestBody RequestWrapper requestData) {
         ResponseWrapper responseWrapper = new ResponseWrapper();
-        // TODO : data exist or not
-        // TODO: Insert Record
+        Buyer buyer = responseWrapper.getBuyer();
+        ProductBid productBid = responseWrapper.getProductBid();
+        // TODO: Callling rest template
         return ResponseEntity.ok(responseWrapper);
     }
 

@@ -1,5 +1,6 @@
 package com.eauction.app.controller;
 
+import com.eauction.app.config.ProductConfigValues;
 import com.eauction.app.model.Product;
 import com.eauction.app.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,14 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    ProductConfigValues productConfigValues;
+
+    @GetMapping("/verison")
+    public ResponseEntity <String> getVersion() {
+        return ResponseEntity.ok().body(productConfigValues.getBuildVersion());
+    }
 
     @GetMapping("/products")
     public ResponseEntity <List<Product>> getAllProduct() {

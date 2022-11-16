@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: SELLER-SERVICE
+          uri: lb://seller
+          predicates:
+            - Path=/seller/**
+          filters:
+            - RewritePath=/seller/?(?<remaining>.*), /${remaining}
+        - id: BUYER-SERVICE
+          uri: lb://buyer
+          predicates:
+            - Path=/buyer/**
+          filters:
+            - RewritePath=/buyer/?(?<remaining>.*), /${remaining}
+
