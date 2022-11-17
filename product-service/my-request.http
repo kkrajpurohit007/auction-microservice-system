@@ -1,0 +1,2 @@
+### GET request with dynamic variables
+GET http://localhost:8082/e-auction/api/v1/bids/product/1
