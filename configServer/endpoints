@@ -1,0 +1,11 @@
+http://localhost:8071/seller/default
+http://localhost:8071/buyer/default
+
+http://localhost:8071/seller/dev
+http://localhost:8071/buyer/dev
+
+http://localhost:8071/seller/uat
+http://localhost:8071/buyer/uat
+
+http://localhost:8071/seller/prod
+http://localhost:8071/buyer/prod
